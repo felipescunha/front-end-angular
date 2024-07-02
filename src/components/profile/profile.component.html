@@ -1,0 +1,48 @@
+<div class="p-4 flex flex-col justify-start items-center max-w-xl pb-2">
+  <div class="mt-3 justify-center items-center ">
+    <img src="{{userData.avatar_url}}" alt="Avatar" class="rounded-full mt-2 w-64 h-64" />
+  </div>
+  <div class="flex flex-col mt-2 text-left">
+    <p class="text-xl text-white font-medium">{{userData.name}}</p>
+    <span class=" text-gray-200">{{userData.login}}</span>
+    <div class="text-white bg-gray-700 rounded-md p-2 mt-2 text-center">
+      <hlm-alert-dialog>
+        <button id='edit-profile' variant='outline' brnAlertDialogTrigger hlmBtn>Clique para acessar a bio</button>
+        <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
+          <hlm-alert-dialog-header>
+            <h3 hlmAlertDialogTitle>Biografia</h3>
+            <p hlmAlertDialogDescription>
+              {{userData.bio || 'Este usuário não possui bio :('}}
+            </p>
+          </hlm-alert-dialog-header>
+          <hlm-alert-dialog-footer>
+            <button hlmAlertDialogCancel (click)='ctx.close()'>Cancelar</button>
+          </hlm-alert-dialog-footer>
+        </hlm-alert-dialog-content>
+      </hlm-alert-dialog>
+    </div>
+    <div class="flex flex-row text-sm mt-3 mb-1 items-center">
+      <img src="/users.svg" alt="Avatar" class="rounded-full w-4 h-4" />
+      <span class="text-white font-medium mr-1 ">followers</span>
+      <p class="text-gray-200"> {{userData.followers}} </p>
+      <span class="text-white font-medium ml-2 mr-2 "> · </span>
+
+      <div class="flex items-center hover:cursor-pointer gap-1 border-0 hover:border-b-2">
+        <span class="text-white font-medium">following</span>
+        <p class="text-gray-200">{{userData.following}}</p>
+      </div>
+    </div>
+    <div class="flex flex-col items-start">
+      <p class="text-gray-200 text-sm">{{userData.blog}}</p>
+      <p class="text-gray-200 text-sm">{{userData.html_url}}</p>
+    </div>
+    <div class="flex flex-row mt-2 items-center">
+      <img src="/location.svg" alt="Avatar" class="rounded-full w-4 h-4" />
+      <p class="text-gray-200 text-sm">{{userData.location}}</p>
+    </div>
+    <p class="text-gray-200 text-sm">{{userData.company}}</p>
+    <p class="text-gray-200 text-sm">
+      Public repositories: {{userData.public_repos}}
+    </p>
+  </div>
+</div>
