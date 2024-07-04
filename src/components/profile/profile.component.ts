@@ -1,3 +1,4 @@
+import { CommonModule, NgFor } from '@angular/common';
 import { IUser } from '../../app/app.interface';
 import { Component, Input, OnInit } from '@angular/core';
 import { BrnAlertDialogContentDirective, BrnAlertDialogTriggerDirective } from '@spartan-ng/ui-alertdialog-brain';
@@ -13,10 +14,12 @@ import {
   HlmAlertDialogTitleDirective,
 } from '@spartan-ng/ui-alertdialog-helm';
 
+import { FollowingsService } from '../../app/followings.service';
 @Component({
   standalone: true,
   selector: 'profile',
   imports: [
+    CommonModule,
     BrnAlertDialogContentDirective,
     BrnAlertDialogTriggerDirective,
     HlmAlertDialogActionButtonDirective,
@@ -28,10 +31,13 @@ import {
     HlmAlertDialogHeaderComponent,
     HlmAlertDialogOverlayDirective,
     HlmAlertDialogTitleDirective,
+    NgFor,
   ],
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
+  constructor(private followingsService: FollowingsService) {}
+
   @Input() public userData: IUser = {
     avatar_url: '',
     name: '',
@@ -43,4 +49,10 @@ export class ProfileComponent implements OnInit {
   };
 
   public ngOnInit() {}
+
+  async getFollowings() {
+    console.log('this.userData.login', this.userData.login);
+    await this.followingsService.handleGetFollowings(this.userData.login);
+  }
+
 }
