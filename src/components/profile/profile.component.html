@@ -27,7 +27,8 @@
       <p class="text-gray-200"> {{userData.followers}} </p>
       <span class="text-white font-medium ml-2 mr-2 "> · </span>
 
-      <div class="flex items-center hover:cursor-pointer gap-1 border-0 hover:border-b-2">
+      <div class="flex items-center hover:cursor-pointer gap-1 border-0 hover:border-b-2"
+      (click)="getFollowings()">
         <span class="text-white font-medium">following</span>
         <p class="text-gray-200">{{userData.following}}</p>
       </div>

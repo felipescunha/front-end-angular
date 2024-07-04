@@ -11,3 +11,9 @@ export interface IUser {
   followers: number;
   following: number;
 }
+
+export interface IFollowing {
+  avatar_url: string;
+  name: string;
+  login: string;
+}
